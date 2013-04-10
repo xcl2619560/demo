@@ -24,8 +24,8 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     settings = LanguageSettings()
-    value = settings.languageIsSetting()
-    if not value:
+    isSetting = settings.languageIsSetting()
+    if not isSetting:
         _dlg = DlgLanguageSet()
         _dlg.exec_()
 
