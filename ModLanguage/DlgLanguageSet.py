@@ -2,24 +2,25 @@ __all__ = ['DlgLanguageSet']
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
+from DlgLanguageBase import DlgLanguageBase
 from LanguageSettings import LanguageSettings
 import sys
 import os
 
-class DlgLanguageSet(QDialog):
+class DlgLanguageSet(DlgLanguageBase):
     en_US = LanguageSettings.en_US
     zh_CN = LanguageSettings.zh_CN
 
     def __init__(self, parent=None):
         super(DlgLanguageSet, self).__init__(parent)
-        tr = self.tr
+        #tr = self.tr
 
-        GrpBoxLang = QGroupBox("Language")
-        lbLangSelect = QLabel(tr("Please select your preferred language,<br><b>Note:</b> this will only take effect after you restart pyCREME. "))
+        GrpBoxLang = QGroupBox(self.tr("Language"))
+        lbLangSelect = QLabel(self.tr("Please select your preferred language,<br><b>Note:</b> this will only take effect after you restart pyCREME. "))
 
         self.cbLangSelect = QComboBox()
-        self.cbLangSelect.insertItem(0, tr("English"), self.en_US)
-        self.cbLangSelect.insertItem(1, tr("Simplified Chinese"), self.zh_CN)
+        self.cbLangSelect.insertItem(0, self.tr("English"), self.en_US)
+        self.cbLangSelect.insertItem(1, self.tr("Simplified Chinese"), self.zh_CN)
         self.cbLangSelect.setSizeAdjustPolicy(QComboBox.AdjustToContents)
 
         self.btOk = QDialogButtonBox(QDialogButtonBox.Ok)
@@ -38,6 +39,7 @@ class DlgLanguageSet(QDialog):
         mainLayout.addWidget(GrpBoxLang)
         mainLayout.addWidget(self.btOk)
         self.setLayout(mainLayout)
+        self.setWindowTitle(self.tr(self.label))
 
         self.connect(self.btOk, SIGNAL("accepted()"), self.setInstallLanguage)
         self.settings = LanguageSettings(self.en_US)
