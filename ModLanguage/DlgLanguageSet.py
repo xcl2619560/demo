@@ -16,7 +16,7 @@ class DlgLanguageSet(DlgLanguageBase):
         #tr = self.tr
 
         GrpBoxLang = QGroupBox(self.tr("Language"))
-        lbLangSelect = QLabel(self.tr("Please select your preferred language,<br><b>Note:</b> this will only take effect after you restart pyCREME. "))
+        lbLangSelect = QLabel(self.tr("<p>Please select your preferred language,<br><b>Note:</b> this will only take effect after you restart pyCREME.</p>"))
 
         self.cbLangSelect = QComboBox()
         self.cbLangSelect.insertItem(0, self.tr("English"), self.en_US)
@@ -55,9 +55,9 @@ class DlgLanguageSet(DlgLanguageBase):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    #translator = QTranslator()
-    #a = translator.load("weibull_CN.qm")
-    #app.installTranslator(translator)
+    translator = QTranslator()
+    a = translator.load("DlgLanguageSet_zh_CN.qm")
+    app.installTranslator(translator)
     dlg = DlgLanguageSet()
     dlg.show()
     app.exec_()
